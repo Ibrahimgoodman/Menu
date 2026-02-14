@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Operations</title>
+</head>
+<body>
+
+<script>
+    function runProgram() {
+        //Receive array size
+        let size = Number(prompt("Enter array size:"));
+        let arr = [];
+
+        //Receive array elements and ensure they are numbers
+        for (let i = 0; i < size; i++) {
+            let value;
+            do {
+                value = Number(prompt("Enter number " + (i + 1)));
+            } while (isNaN(value));
+            arr.push(value);
+        }
+
+        //Ask user for choice
+        let choice = prompt(
+            "Choose an option:\n" +
+            "a : Display array as entered\n" +
+            "b : Display array ascending\n" +
+            "c : Display array descending\n" +
+            "d : Display reversed array\n" +
+            "e : Display even numbers only\n" +
+            "f : Display numbers divisible by a given number\n" +
+            "g : Display new array with 30% discount\n" +
+            "h : Display array numbers concatenated with ***"
+        );
+
+        switch (choice) {
+            case 'a':
+                alert(arr);
+                break;
+
+            case 'b':
+                alert([...arr].sort((a, b) => a - b));
+                break;
+
+            case 'c':
+                alert([...arr].sort((a, b) => b - a));
+                break;
+
+            case 'd':
+                alert([...arr].reverse());
+                break;
+
+            case 'e':
+                let evens = arr.filter(n => n % 2 === 0);
+                if (evens.length === 0) {
+                    alert("No even numbers found");
+                } else {
+                    alert(evens);
+                }
+                break;
+
+            case 'f':
+                let num = Number(prompt("Enter divisor number:"));
+                let divisible = arr.filter(n => n % num === 0);
+                if (divisible.length === 0) {
+                    alert("No numbers divisible by " + num);
+                } else {
+                    alert(divisible);
+                }
+                break;
+
+            case 'g':
+                let discounted = arr.map(n => n * 0.7);
+                alert(discounted);
+                break;
+
+            case 'h':
+                alert(arr.join("***"));
+                break;
+
+            default:
+                alert("Invalid choice");
+        }
+
+        //Ask user it they want to repeat
+        if (confirm("Do you want to run again?")) {
+            runProgram();
+        }
+    }
+
+    
+    runProgram();
+</script>
+
+</body>
+</html>
